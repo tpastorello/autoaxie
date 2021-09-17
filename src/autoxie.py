@@ -24,90 +24,134 @@ currentMouseX, currentMouseY = pyautogui.position()
 
 # MINNER - vinteum.com
 
+def Autoxie(TEAM, LVLS):
 
-def Autoxie():
+    # CHANGE LEVEL RANDOM
+    LEVELS = LVLS.split(",")
+    LIMIT = len(LEVELS) - 1
+    LEVEL = LEVELS[randnum(0, LIMIT)]
 
     print("\n" * 130)
 
-    # CONFIDENCE
-    CONFLVL = sys.argv[1]
-    ACCOUNT = sys.argv[2]
-
-    #PATH = './screen/'
-
     # TIMERS
-    _T1 = randnum(5, 10)
+    _T1 = randnum(1, 3)
     _T2 = randnum(11, 15)
     _T3 = randnum(15, 20)
     _T4 = randnum(17, 33)
     _T6 = randnum(60, 90)
     _TWAIT = randnum(120, 360)
-    _TMINING = randnum(240, 360)
-    _TCLAIM = randnum(60, 100)
-    _TRYCPUTIMER = 3600
-
-    # os.system('bash resolution.sh')
-    # progress(0, 100, 'RESOLUTION')
-    # time.sleep(1)
 
     print(':: AUTOXIE © GRINDER T21 :: AXIE AUTO PLAYER :: V0.1 :: ' +
-          ACCOUNT.upper() + ' ::  \r')
+          TEAM.upper() + ' ::  \r')
 
     progress(0, 100, 'READY')
-    time.sleep(1)    
+    time.sleep(1)
     progress(0, 100, 'SCANING')
 
-    Adventure = pyautogui.locateOnScreen(PATH('adventure'), confidence=CONFLVL)
-    if (Adventure != None):
-        progress(1, 100, 'ADVENTURE')
-        pyautogui.click(Adventure)        
+    Adventure = LOCATE('adventure')
+    if (Adventure != 0):
+        progress(5, 100, 'ADVENTURE TIME!')
+        pyautogui.click(Adventure)
+        time.sleep(_T1)
+
+    Level = LOCATE('lvl-' + LEVEL)
+    if (Level != 0):
+        progress(10, 100, 'LEVEL ' + LEVEL)
+        pyautogui.click(Level)
+        time.sleep(_T2)
+
+    Start = LOCATE('start')
+    if (Start != 0):
+        progress(20, 100, 'START ')
+        pyautogui.click(Start)
+        time.sleep(_T2)
+
+    Defeated = LOCATE('defeated')
+    if (Defeated != 0):
+        progress(0, 100, 'OH NO! DEFEATED !!!!!!')
+        pyautogui.click(Defeated)
+        time.sleep(_T1)
         pyautogui.doubleClick()
         time.sleep(_T1)
 
-#    LetsStart = pyautogui.locateOnScreen(
-#        PATH + 'letsstart', confidence=CONFLVL)
-#    if (LetsStart != None):
-#        progress(0, 100, 'RELOAD')
-#        pyautogui.hotkey('ctrl', 'f5')
-#        time.sleep(_T1)
+    Victory = LOCATE('victory')
+    if (Victory != 0):
+        progress(100, 100, 'VICTORY !!!!!!')
+        pyautogui.click(Victory)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
+        time.sleep(_T1)
 
+    Small = LOCATE('victory')
+    if (Small != 0):
+        progress(100, 100, ' $$$$$$$$$ ')
+        pyautogui.click(Small)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
+        time.sleep(_T1)
 
-    # WAIT FOR MINING -----------
-    # MineButtom = pyautogui.locateOnScreen(
-    #     PATH + 'minebuttom', confidence=CONFLVL)
-    # progress(randnum(40, 50), 100, 'SCANING')
+    # pyautogui.moveTo(80, 100)
 
-    # if (MineButtom != None):
-    #     r = _TWAIT
-    #     i = r
-    #     while i > 1:
-    #         if i > 100:
-    #             sys.stdout.write(':: START IN  :: ' + str(i) +
-    #                              ' SEC                                             \r')
-    #             sys.stdout.flush()
-    #         else:
-    #             progress(i, 100, 'START IN')
+    # SELECT CARDS
 
-    #         time.sleep(1)
-    #         i -= 1
+    EndTurn = LOCATE('endturn')
+    if (EndTurn != 0):
 
+        progress(0, 100, 'LET´S PLAY')
+
+        totcards = 12
+        repet = 2
+        x = 1
+
+        while x <= repet:
+            i = 1
+            # print(str(x) + ' x \r')
+            # print(str(i) + ' i \r')
+            while i <= totcards:
+                # print(str(i) + ' i \r')
+                Card = CARD(i, TEAM)
+                if (Card != 0):
+                    progress(0, (i*7), 'CARD ' + str(i))
+                    pyautogui.click(Card)
+                    time.sleep(_T1)
+                    pyautogui.doubleClick()
+
+                i += 1
+                time.sleep(1)
+                
+            x += 1
+
+        # pyautogui.moveTo(100, 100)
+        EndTurn = LOCATE('endturn')
+        if (EndTurn != 0):
+            progress(100, 100, 'END TURN')
+            pyautogui.click(EndTurn)
+            time.sleep(_T1)
+            x = 1
 
 # START !
+TEAM = sys.argv[1]
+LEVELS = sys.argv[2]
 
-
-CONFLVL = sys.argv[1]
-# removefiles()
-ga("LOADING")
+# REMOVE CACHE
+removefiles()
 print("\n" * 130)
 
-print(':: AUT0X13 :: ' + larry() + ' \r')
-progress(0, 100, 'STARTING...')
-time.sleep(1)
-progress(0, 100, 'REMOVING TRASH...')
-time.sleep(1)
-progress(1, 100, 'APPLY CONFIDENCE LEVEL ' + CONFLVL)
+print('STARTING SLP MINER')
 time.sleep(1)
 
+print('TEAM: ' + str(TEAM.upper()) + '\r')
+time.sleep(3)
+
+print('LEVELS : ' + str(LEVELS) + '\r')
+time.sleep(3)
+
+ga("LOADING AUT0X13")
+time.sleep(5)
+
+print('                                                                            \r' + larry() + '  \r')
+time.sleep(2)
+
+# AUTOXIE
 while True:
-    Autoxie()
-    # XR()
+    Autoxie(TEAM, LEVELS)
