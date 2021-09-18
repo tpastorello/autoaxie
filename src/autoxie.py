@@ -24,7 +24,8 @@ currentMouseX, currentMouseY = pyautogui.position()
 
 # MINNER - vinteum.com
 
-def Autoxie(TEAM, LVLS):
+
+def Autoxie(TEAM, LVLS, TYPE):
 
     # CHANGE LEVEL RANDOM
     LEVELS = LVLS.split(",")
@@ -48,11 +49,20 @@ def Autoxie(TEAM, LVLS):
     time.sleep(1)
     progress(0, 100, 'SCANING')
 
-    Adventure = LOCATE('adventure')
-    if (Adventure != 0):
-        progress(5, 100, 'ADVENTURE TIME!')
-        pyautogui.click(Adventure)
-        time.sleep(_T1)
+    if(TYPE == 'adventure'):
+
+        Adventure = LOCATE('adventure')
+        if (Adventure != 0):
+            progress(5, 100, 'ADVENTURE TIME!')
+            pyautogui.click(Adventure)
+            time.sleep(_T1)
+    else:
+
+        Arena = LOCATE('arena')
+        if (Arena != 0):
+            progress(5, 100, 'ARENA FIGHT!')
+            pyautogui.click(Arena)
+            time.sleep(_T1)
 
     Level = LOCATE('lvl-' + LEVEL)
     if (Level != 0):
@@ -118,7 +128,7 @@ def Autoxie(TEAM, LVLS):
 
                 i += 1
                 time.sleep(1)
-                
+
             x += 1
 
         # pyautogui.moveTo(100, 100)
@@ -129,9 +139,11 @@ def Autoxie(TEAM, LVLS):
             time.sleep(_T1)
             x = 1
 
+
 # START !
 TEAM = sys.argv[1]
 LEVELS = sys.argv[2]
+TYPE = sys.argv[3]
 
 # REMOVE CACHE
 removefiles()
@@ -154,4 +166,4 @@ time.sleep(2)
 
 # AUTOXIE
 while True:
-    Autoxie(TEAM, LEVELS)
+    Autoxie(TEAM, LEVELS, TYPE)
