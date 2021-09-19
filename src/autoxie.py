@@ -44,7 +44,7 @@ def Autoxie(TEAM, LVLS, TYPE):
     _T6 = randnum(60, 90)
     _TWAIT = randnum(120, 250)
 
-    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3C :: ' +
+    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3E :: ' +
           str(TEAM).upper() + ' IN ' + str(TYPE).upper() + ' '' ::  \r')
 
     progress(0, 100, 'READY')
