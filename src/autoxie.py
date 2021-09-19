@@ -42,9 +42,9 @@ def Autoxie(TEAM, LVLS, TYPE):
     _T3 = randnum(15, 20)
     _T4 = randnum(17, 33)
     _T6 = randnum(60, 90)
-    _TWAIT = randnum(120, 360)
+    _TWAIT = randnum(120, 250)
 
-    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3A :: ' +
+    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3C :: ' +
           str(TEAM).upper() + ' IN ' + str(TYPE).upper() + ' '' ::  \r')
 
     progress(0, 100, 'READY')
@@ -72,7 +72,7 @@ def Autoxie(TEAM, LVLS, TYPE):
         pyautogui.click(Level)
         time.sleep(_T2)
 
-    Fifty = LOCATE('5050')
+    Fifty = LOCATE('5050', 0.999)
     Arrowback = LOCATE('arrowback')
     if (Fifty != 0):
         ADVENTURE_TYPE = 'arena'
@@ -85,7 +85,7 @@ def Autoxie(TEAM, LVLS, TYPE):
         if (Arena != 0):
             progress(5, 100, 'ARENA FIGHT!')
             pyautogui.click(Arena)
-            time.sleep(_T1)
+            time.sleep(_T2)
 
     Start = LOCATE('start')
     if (Start != 0):
@@ -97,9 +97,9 @@ def Autoxie(TEAM, LVLS, TYPE):
     if (Defeated != 0):
         progress(0, 100, 'OH NO! DEFEATED !!!!!!')
         pyautogui.click(Defeated)
-        time.sleep(_T1)
+        time.sleep(_T2)
         pyautogui.doubleClick()
-        time.sleep(_T1)
+        time.sleep(_TWAIT)
 
     Victory = LOCATE('victory')
     if (Victory != 0):
@@ -107,11 +107,35 @@ def Autoxie(TEAM, LVLS, TYPE):
         pyautogui.click(Victory)
         time.sleep(_T2)
         pyautogui.doubleClick()
+        time.sleep(_TWAIT)
+        
+    Draw = LOCATE('draw')
+    if (Draw != 0):
+        progress(100, 100, 'DRAW !!!!!!')
+        pyautogui.click(Draw)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
+        time.sleep(_TWAIT)               
+
+    VictoryB = LOCATE('victoryb')
+    if (VictoryB != 0):
+        progress(100, 100, 'VICTORY YEAH !!!!')
+        pyautogui.click(VictoryB)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
         time.sleep(_T1)
+        
+    DrawB = LOCATE('drawb')
+    if (DrawB != 0):
+        progress(100, 100, 'DRAW NOOoO !!!!')
+        pyautogui.click(DrawB)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
+        time.sleep(_TWAIT)          
 
     Small = LOCATE('small')
     if (Small != 0):
-        progress(100, 100, ' $$$ ')
+        progress(100, 100, ' $ GO GO $LP ')
         pyautogui.click(Small)
         time.sleep(_T2)
         pyautogui.doubleClick()

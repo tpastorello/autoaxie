@@ -14,9 +14,9 @@ def PATH(file):
 
 
 # LOCATE ON SCREEN
-def LOCATE(file):
+def LOCATE(file, conf=0.90):
     MATRIX = pyautogui.locateOnScreen(
-        PATH(file), region=(0, 0, 1440, 900), confidence=0.90)
+        PATH(file), region=(0, 0, 1440, 900), confidence=conf)
     if (MATRIX != None):
         return MATRIX
     else:
@@ -29,7 +29,7 @@ def CARD(file, team):
     F = str(file)
 
     Card = pyautogui.locateOnScreen(
-        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.88)
+        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.90)
     if (Card != None):
         return Card
     else:
@@ -41,7 +41,7 @@ def ALLCARDS(file, team):
     F = str(file)
 
     Cards = pyautogui.locateAllOnScreen(
-        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.86)
+        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.90)
     if (Cards != None):
         return Cards
     else:
