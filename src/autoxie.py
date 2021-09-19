@@ -32,6 +32,8 @@ def Autoxie(TEAM, LVLS, TYPE):
     LIMIT = len(LEVELS) - 1
     LEVEL = LEVELS[randnum(0, LIMIT)]
 
+    ADVENTURE_TYPE = TYPE
+
     print("\n" * 130)
 
     # TIMERS
@@ -42,14 +44,14 @@ def Autoxie(TEAM, LVLS, TYPE):
     _T6 = randnum(60, 90)
     _TWAIT = randnum(120, 360)
 
-    print(':: AUTOXIE © GRINDER T21 :: AXIE AUTO PLAYER :: V0.1 :: ' +
-          TEAM.upper() + ' ::  \r')
+    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.2 :: ' +
+          str(TEAM).upper() + ' IN ' + str(TYPE).upper() + ' '' ::  \r')
 
     progress(0, 100, 'READY')
     time.sleep(1)
     progress(0, 100, 'SCANING')
 
-    if(TYPE == 'adventure'):
+    if(ADVENTURE_TYPE == 'adventure'):
 
         Adventure = LOCATE('adventure')
         if (Adventure != 0):
@@ -69,6 +71,21 @@ def Autoxie(TEAM, LVLS, TYPE):
         progress(10, 100, 'LEVEL ' + LEVEL)
         pyautogui.click(Level)
         time.sleep(_T2)
+
+    Fifty = LOCATE('5050')
+    Arrowback = LOCATE('arrowback')
+    if (Fifty != 0):
+        ADVENTURE_TYPE = 'arena'
+        progress(0, 100, 'YOU HAVE FIFTY SLP! LET`S GO TO ARENA')
+        time.sleep(_T1)
+        pyautogui.click(Arrowback)
+        time.sleep(_T2)
+
+        Arena = LOCATE('arena')
+        if (Arena != 0):
+            progress(5, 100, 'ARENA FIGHT!')
+            pyautogui.click(Arena)
+            time.sleep(_T1)
 
     Start = LOCATE('start')
     if (Start != 0):
@@ -100,27 +117,37 @@ def Autoxie(TEAM, LVLS, TYPE):
         pyautogui.doubleClick()
         time.sleep(_T1)
 
-    # pyautogui.moveTo(80, 100)
-
     # SELECT CARDS
-
     EndTurn = LOCATE('endturn')
     if (EndTurn != 0):
 
         progress(0, 100, 'LET´S PLAY')
 
         totcards = 12
-        repet = 2
+        repet = 1
         x = 1
 
         while x <= repet:
             i = 1
-            # print(str(x) + ' x \r')
-            # print(str(i) + ' i \r')
             while i <= totcards:
-                # print(str(i) + ' i \r')
-                Card = CARD(i, TEAM)
-                if (Card != 0):
+                Cards = list(ALLCARDS(i, TEAM))
+                TotalCards = len(Cards)
+
+                if(TotalCards > 0):
+                    progress("CARD " + str(i) + ": " +
+                             str(TotalCards) + " CARDS ")
+                    CardCount = 0
+                    while CardCount < TotalCards:
+                        pyautogui.click(Cards[CardCount])
+                        time.sleep(_T1)
+                        pyautogui.doubleClick()
+                        CardCount += 1
+
+                i += 1
+                
+                """
+                #PARA SELECIONAR UM CARD DE CADA TIPO POR VEZ
+                if (Cards != 0):
                     progress(0, (i*7), 'CARD ' + str(i))
                     pyautogui.click(Card)
                     time.sleep(_T1)
@@ -128,6 +155,7 @@ def Autoxie(TEAM, LVLS, TYPE):
 
                 i += 1
                 time.sleep(1)
+                """
 
             x += 1
 
@@ -141,9 +169,10 @@ def Autoxie(TEAM, LVLS, TYPE):
 
 
 # START !
+# PARAMETERS
 TEAM = sys.argv[1]
-LEVELS = sys.argv[2]
-TYPE = sys.argv[3]
+TYPE = sys.argv[2]
+LEVELS = sys.argv[3]
 
 # REMOVE CACHE
 removefiles()
@@ -153,10 +182,13 @@ print('STARTING SLP MINER')
 time.sleep(1)
 
 print('TEAM: ' + str(TEAM.upper()) + '\r')
-time.sleep(3)
+time.sleep(2)
+
+print('TYPE: ' + str(TYPE.upper()) + '\r')
+time.sleep(2)
 
 print('LEVELS : ' + str(LEVELS) + '\r')
-time.sleep(3)
+time.sleep(2)
 
 ga("LOADING AUT0X13")
 time.sleep(5)

@@ -6,9 +6,6 @@ import time
 import random
 import sys
 
-# LEVEL CONFIDENCE OF BMP MATRIX
-CONFLVL = 0.90
-
 
 # PATH
 def PATH(file):
@@ -18,7 +15,8 @@ def PATH(file):
 
 # LOCATE ON SCREEN
 def LOCATE(file):
-    MATRIX = pyautogui.locateOnScreen(PATH(file), region=(0, 0, 1440, 900), confidence=CONFLVL)
+    MATRIX = pyautogui.locateOnScreen(
+        PATH(file), region=(0, 0, 1440, 900), confidence=0.90)
     if (MATRIX != None):
         return MATRIX
     else:
@@ -31,11 +29,23 @@ def CARD(file, team):
     F = str(file)
 
     Card = pyautogui.locateOnScreen(
-        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 900), confidence=0.85)
+        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.83)
     if (Card != None):
         return Card
     else:
         return 0
+
+# CARD ON SCREEN
+def ALLCARDS(file, team):
+    T = str(team)
+    F = str(file)
+
+    Cards = pyautogui.locateAllOnScreen(
+        PATH('teams/' + T + '/' + F), region=(0, 600, 1440, 300), confidence=0.83)
+    if (Cards != None):
+        return Cards
+    else:
+        return 0        
 
 
 # RANDOM TIMES
