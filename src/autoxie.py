@@ -44,7 +44,7 @@ def Autoxie(TEAM, LVLS, TYPE):
     _T6 = randnum(60, 90)
     _TWAIT = randnum(120, 360)
 
-    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.2 :: ' +
+    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3A :: ' +
           str(TEAM).upper() + ' IN ' + str(TYPE).upper() + ' '' ::  \r')
 
     progress(0, 100, 'READY')
@@ -124,40 +124,28 @@ def Autoxie(TEAM, LVLS, TYPE):
         progress(0, 100, 'LET´S PLAY')
 
         totcards = 12
-        repet = 1
-        x = 1
+        i = 1
 
-        while x <= repet:
-            i = 1
-            while i <= totcards:
-                Cards = list(ALLCARDS(i, TEAM))
-                TotalCards = len(Cards)
+        #repet = 1
+        #x = 1
 
-                if(TotalCards > 0):
-                    progress(i * 8.3, 100, "CARD " + str(i) + ": " +
-                             str(TotalCards) + " CARDS ")
-                    CardCount = 0
-                    while CardCount < TotalCards:
-                        pyautogui.click(Cards[CardCount])
-                        time.sleep(_T1)
-                        pyautogui.doubleClick()
-                        CardCount += 1
+        # while x <= repet:
+        while i <= totcards:
+            Cards = list(ALLCARDS(i, TEAM))
+            TotalCards = len(Cards)
 
-                i += 1
-
-                """
-                #PARA SELECIONAR UM CARD DE CADA TIPO POR VEZ
-                if (Cards != 0):
-                    progress(0, (i*7), 'CARD ' + str(i))
-                    pyautogui.click(Card)
+            if(TotalCards > 0):
+                progress(i * 8.3, 100, "CARD " +
+                         str(i) + " OF " + str(TotalCards))
+                CardCount = 0
+                while CardCount < TotalCards:
+                    pyautogui.click(Cards[CardCount])
                     time.sleep(_T1)
                     pyautogui.doubleClick()
-
-                i += 1
-                time.sleep(1)
-                """
-
-            x += 1
+                    CardCount += 1
+            # INCREASE
+            i += 1
+        #  x += 1
 
         # pyautogui.moveTo(100, 100)
         EndTurn = LOCATE('endturn')
