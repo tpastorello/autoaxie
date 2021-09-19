@@ -109,9 +109,9 @@ def Autoxie(TEAM, LVLS, TYPE):
         pyautogui.doubleClick()
         time.sleep(_T1)
 
-    Small = LOCATE('victory')
+    Small = LOCATE('small')
     if (Small != 0):
-        progress(100, 100, ' $$$$$$$$$ ')
+        progress(100, 100, ' $$$ ')
         pyautogui.click(Small)
         time.sleep(_T2)
         pyautogui.doubleClick()
@@ -134,7 +134,7 @@ def Autoxie(TEAM, LVLS, TYPE):
                 TotalCards = len(Cards)
 
                 if(TotalCards > 0):
-                    progress("CARD " + str(i) + ": " +
+                    progress(i * 8.3, 100, "CARD " + str(i) + ": " +
                              str(TotalCards) + " CARDS ")
                     CardCount = 0
                     while CardCount < TotalCards:
@@ -144,7 +144,7 @@ def Autoxie(TEAM, LVLS, TYPE):
                         CardCount += 1
 
                 i += 1
-                
+
                 """
                 #PARA SELECIONAR UM CARD DE CADA TIPO POR VEZ
                 if (Cards != 0):
