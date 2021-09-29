@@ -32,6 +32,8 @@ def Autoxie(TEAM, LVLS, TYPE):
     LIMIT = len(LEVELS) - 1
     LEVEL = LEVELS[randnum(0, LIMIT)]
 
+    # TURN = 0
+
     ADVENTURE_TYPE = TYPE
 
     print("\n" * 130)
@@ -44,7 +46,7 @@ def Autoxie(TEAM, LVLS, TYPE):
     _T6 = randnum(60, 90)
     _TWAIT = randnum(120, 250)
 
-    print(':: AUTOXIE © GRINDER :: AXIE AUTO PLAYER :: V0.3E :: ' +
+    print(':: AUTOXIE © GRINDER :: SLP MINER :: V0.4 :: ' +
           str(TEAM).upper() + ' IN ' + str(TYPE).upper() + ' '' ::  \r')
 
     progress(0, 100, 'READY')
@@ -65,6 +67,7 @@ def Autoxie(TEAM, LVLS, TYPE):
             progress(5, 100, 'ARENA FIGHT!')
             pyautogui.click(Arena)
             time.sleep(_T1)
+            # TURN = 0
 
     Level = LOCATE('lvl-' + LEVEL)
     if (Level != 0):
@@ -108,14 +111,22 @@ def Autoxie(TEAM, LVLS, TYPE):
         time.sleep(_T2)
         pyautogui.doubleClick()
         time.sleep(_TWAIT)
-        
+
     Draw = LOCATE('draw')
     if (Draw != 0):
         progress(100, 100, 'DRAW !!!!!!')
         pyautogui.click(Draw)
         time.sleep(_T2)
         pyautogui.doubleClick()
-        time.sleep(_TWAIT)               
+        time.sleep(_TWAIT)
+
+    DefeatedB = LOCATE('defeatedb')
+    if (DefeatedB != 0):
+        progress(0, 100, 'OH NO! DEFEATED !!!!!')
+        pyautogui.click(DefeatedB)
+        time.sleep(_T2)
+        pyautogui.doubleClick()
+        time.sleep(_TWAIT)
 
     VictoryB = LOCATE('victoryb')
     if (VictoryB != 0):
@@ -124,14 +135,14 @@ def Autoxie(TEAM, LVLS, TYPE):
         time.sleep(_T2)
         pyautogui.doubleClick()
         time.sleep(_T1)
-        
+
     DrawB = LOCATE('drawb')
     if (DrawB != 0):
         progress(100, 100, 'DRAW NOOoO !!!!')
         pyautogui.click(DrawB)
         time.sleep(_T2)
         pyautogui.doubleClick()
-        time.sleep(_TWAIT)          
+        time.sleep(_TWAIT)
 
     Small = LOCATE('small')
     if (Small != 0):
@@ -143,17 +154,18 @@ def Autoxie(TEAM, LVLS, TYPE):
 
     # SELECT CARDS
     EndTurn = LOCATE('endturn')
-    if (EndTurn != 0):
+    Dismiss = LOCATE('dismiss')
+    if (EndTurn != 0 or Dismiss):
 
         progress(0, 100, 'LET´S PLAY')
 
         totcards = 12
         i = 1
 
-        #repet = 1
-        #x = 1
+        # FIRST TURN ONLY FIRST FIVE, ZERO ENERGY CARDS
+        # if(TURN == 1):
+        #totcards = 5
 
-        # while x <= repet:
         while i <= totcards:
             Cards = list(ALLCARDS(i, TEAM))
             TotalCards = len(Cards)
@@ -169,15 +181,23 @@ def Autoxie(TEAM, LVLS, TYPE):
                     CardCount += 1
             # INCREASE
             i += 1
-        #  x += 1
 
         # pyautogui.moveTo(100, 100)
+
+        # pyautogui.moveTo(100, 100)
+        DismissActive = LOCATE('dismiss-active')
+        if (DismissActive != 0):
+            progress(100, 100, 'DISMISS END')
+            pyautogui.click(DismissActive)
+            time.sleep(_T1)
+
         EndTurn = LOCATE('endturn')
         if (EndTurn != 0):
             progress(100, 100, 'END TURN')
             pyautogui.click(EndTurn)
             time.sleep(_T1)
-            x = 1
+            # TURN INCREESE
+            # TURN += 1
 
 
 # START !
